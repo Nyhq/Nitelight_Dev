@@ -64,7 +64,7 @@ const App = () => {
     const intervalId = setInterval(() => {
         BleManager.scan([], 3, true) // Adjust scan duration as needed
             .then(() => {
-                console.log('Scan started');
+                //console.log('Scan started');
             })
             .catch((err) => {
                 console.error(err);

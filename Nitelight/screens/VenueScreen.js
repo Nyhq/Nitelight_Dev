@@ -2,35 +2,27 @@ import React, { useState, useEffect } from 'react';
 import { View, ScrollView, StyleSheet } from 'react-native';
 import { Appbar, Card, Title, Paragraph, FAB, Portal, Dialog, Button } from 'react-native-paper';
 import { useFocusEffect } from '@react-navigation/native';
+import { getVenues, fetchVenueDetails } from '../api';
 
 const VenueScreen = ({ navigation }) => {
-  // Sample venue data
-  const venues = [
-    {
-      id: 1,
-      name: 'Sample Venue 1',
-      location: 'Sample Location 1',
-      imageUrl: 'https://placekitten.com/300/200', // Replace with actual image URL
-    },
-    {
-      id: 2,
-      name: 'Sample Venue 2',
-      location: 'Sample Location 2',
-      imageUrl: 'https://placekitten.com/300/201',
-    },
-    {
-      id: 3,
-      name: 'Sample Venue 3',
-      location: 'Sample Location 3',
-      imageUrl: 'https://placekitten.com/300/202',
-    },
-  ];
+  
   const [visibleDialog, setVisibleDialog] = useState(false);
   const [selectedVenue, setSelectedVenue] = useState(null);
   const [visibleFilterDialog, setVisibleFilterDialog] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedDistance, setSelectedDistance] = useState(null);
   const [isFABVisible, setIsFABVisible] = useState(true);
+
+  const [allVenues, setAllVenues] = useState([]); // Stores all venues
+
+  useEffect(() => {
+   
+    getVenues().then(data => {
+      if (data) {
+        setAllVenues(data);
+      }
+    });
+  }, []);
 
   useFocusEffect(
     React.useCallback(() => {
