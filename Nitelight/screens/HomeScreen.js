@@ -111,7 +111,6 @@ return (
       showsText={true} 
       formatText={() => `${Math.round(rssi * 100)}%`} 
     />
-    <Text style={styles.rssiText}>RSSI: {Math.round(rssi * 100)}%</Text> 
   </View>
 );
 };
@@ -122,10 +121,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center'  
   },
-  rssiText: {
-    marginTop: 10,
-    fontSize: 18
-  }
 });
 
 export default App;
